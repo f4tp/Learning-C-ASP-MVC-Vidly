@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
 using VidlySept2018.Models;
+using VidlySept2018.ViewModels;
 
 namespace VidlySept2018.Controllers
 {
@@ -14,7 +15,7 @@ namespace VidlySept2018.Controllers
         // GET: Movies/Random
         public ActionResult Random()
         {
-            var ranMovie = new Movie(){Name = "Shrek!", Id = 1};
+            var ranMovie = new Movie() {Name = "Shrek!", Id = 1};
 
 
             //return Content("Hello World"); //overwrites content
@@ -41,11 +42,26 @@ namespace VidlySept2018.Controllers
             //... viewResult.ViewData.Model
             //var databeignPassedToView = viewResult.ViewData.Model;
             //ViewData is a ViewData dictionary, not a regular dictionary#
+            //var ranMovie = new Movie() { Name = "Shrek!", Id = 1 };
+            //return View(ranMovie);
+
+            
+            var customers = new List<Customer>
+            {
+                new Customer{Name = "Customer 1"},
+                new Customer{Name = "Customer 2"}
+            };
+
+            var viewModel = new RandomMovieViewModel
+            {
+                Movie = ranMovie,
+                Customers = customers
+            };
+            
+            return View(viewModel);
 
         
-
-            return View(ranMovie);
-        }
+    }
 
         //ID passed in through URI /controller/method/param
         //can also be passed in as movies/edit?id=1
@@ -77,7 +93,8 @@ namespace VidlySept2018.Controllers
         }
 
         //mvcaction4 - tab - code snippet for Action Result... doesn't work
-        [Route("movies/released/{year}/{month:regex(\\d{2}:range(1,12)}")]
+        //44mins in vid to get this route
+        [Route("movies/released/{year}/{month:regex(\\d{2}):range(1, 12)}")]
         //regex aplies a regular expression?... a function that we call
         public ActionResult ByReleaseDate(int year, int month)
         {
