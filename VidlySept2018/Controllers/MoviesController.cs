@@ -66,7 +66,7 @@ namespace VidlySept2018.Controllers
         //ID passed in through URI /controller/method/param
         //can also be passed in as movies/edit?id=1
         //id here matters as it is a part of the default route ruling system
-        public ActionResult edit(int id) 
+        public ActionResult Edit(int id) 
         {
             return Content("id=" + id); 
         }
@@ -75,9 +75,9 @@ namespace VidlySept2018.Controllers
         //to make a parameter optional, you make it nullable... with the ?
         //sortBy is a string type = reference type = already nullable
         //if index is called with no params, it can still be called...
-        //this routine sorts teh state of the objects to format the strinmg for the URI
+        //this routine sorts the state of the objects to format the strinmg for the URI
         //would be called e.g. Movies?pageIndex=5&sortBy=Date
-        public ActionResult index(int? pageIndex, string sortBy)
+        public ActionResult Index(int? pageIndex, string sortBy)
         {
             if (!pageIndex.HasValue)
             {
