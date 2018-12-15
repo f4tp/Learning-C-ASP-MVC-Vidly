@@ -11,7 +11,36 @@ namespace VidlySept2018.Controllers
 {
     public class MoviesController : Controller
     {
-        
+        [Route("Movies/AllMovies")]
+        public ActionResult AllMovies()
+        {
+            Movie movIn = new Movie
+            {
+                Id = 1,
+                Name = "HeMan"
+            };
+
+            Movie movIn2 = new Movie
+            {
+                Id = 2,
+                Name = "Skeletor"
+            };
+
+            List<Movie> tempMovs = new List<Movie>
+            {
+                movIn,
+                movIn2
+            };
+
+            var viewMod = new ViewModels.AllMoviesViewModel
+            {
+                AllMovies = tempMovs
+            };
+            
+            return View(viewMod);
+        }
+
+
         // GET: Movies/Random
         public ActionResult Random()
         {
@@ -52,13 +81,13 @@ namespace VidlySept2018.Controllers
                 new Customer{Name = "Customer 2"}
             };
 
-            var viewModel = new RandomMovieViewModel
+            var viewModelMoviesCusts = new RandomMovieViewModel
             {
-                Movie = ranMovie,
-                Customers = customers
+                MovieSet = ranMovie,
+                CustomersList = customers
             };
             
-            return View(viewModel);
+            return View(viewModelMoviesCusts);
 
         
     }
